@@ -1,0 +1,12 @@
+Exibe imagens de anuncios e dicas sobre o servidor.
+
+License: 
+ * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
+
+Developers: 
+ * Lucas Vinicius (Undertaker) <lucasmacho22@gmail.com>
+ * Lunovox <lunovox@openmailbox.org>
+
+Derivado do mod: 
+ * homedecor
+
