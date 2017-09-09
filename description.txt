@@ -1,11 +1,11 @@
-Exibe imagens de anuncios e dicas sobre o servidor.
+Decorative LCD TV that displays ad images and server tips. 
 
 License: 
  * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
 
 Developers: 
  * Lucas Vinicius (Undertaker) <lucasmacho22@gmail.com>
- * Lunovox <lunovox@openmailbox.org>
+ * Lunovox Heavenfinder<lunovox@disroot.org>
 
 Derivado do mod: 
  * homedecor
