@@ -83,12 +83,12 @@ minetest.register_node("television:widescreen", {
 	mesh = "television_widescreen.obj",
 	tiles = {
 		"television_case.png",
-		{ name="television_screens.png",
+		{ name="television_screens.png^television_screens_text.png",
 			animation={
 				type="vertical_frames",
 				aspect_w = 150,
 				aspect_h = 85,
-				length = 60 -- <= Tempo de duracao em segundos!!!
+				length = 90 -- <= Tempo de duracao em segundos!!!
 			}
 		}
 
