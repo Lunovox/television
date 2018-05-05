@@ -88,9 +88,9 @@ minetest.register_node("television:widescreen", {
 		{ name=television.translate("television_screens_en.png"),
 			animation={
 				type="vertical_frames",
-				aspect_w = 150,
-				aspect_h = 85,
-				length = 90 -- <= Tempo de duracao em segundos!!!
+				aspect_w = 300, --150
+				aspect_h = 170, --85
+				length = 60 -- <= Tempo de duracao em segundos!!!
 			}
 		}
 
