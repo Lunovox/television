@@ -151,6 +151,7 @@ minetest.register_node("television:widescreen_off", {
 	paramtype = "light",
 	light_source = 1,
 	paramtype2 = "facedir",
+	walkable = false,
 	selection_box = television.getBox(),
 	collision_box = television.getBox(),
 	--on_rotate = screwdriver.disallow,
