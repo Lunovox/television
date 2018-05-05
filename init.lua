@@ -1,6 +1,7 @@
 television = { }
 
 television.translate = rawget(_G, "intllib") and intllib.Getter() or function(s) return s end
+television.sound = nil
 
 television.canInteract = function(meta, player)
 	if player:get_player_name() == meta:get_string("owner") 
@@ -119,6 +120,9 @@ minetest.register_node("television:widescreen", {
 		if television.canInteract(meta, puncher) then
 			minetest.set_node(pos, {name = "television:widescreen_off", param2 = node.param2})
 			television.putLabel(pos, television.translate("Television Widescreen (off)"))
+			if television.sound~=nil then
+				minetest.sound_stop(television.sound)
+			end
 		end
 	end,
 	on_construct = function(pos)
@@ -153,6 +157,18 @@ minetest.register_node("television:widescreen_off", {
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "television:widescreen", param2 = node.param2})
 		television.putLabel(pos, television.translate("Television Widescreen"))
+		if puncher ~=nil and puncher:is_player() then
+			if television.sound~=nil then
+				minetest.sound_stop(television.sound)
+			end
+			television.sound = minetest.sound_play(
+				television.translate("sfx_jornal_en"), {
+				object = puncher, --Se retirar esta linha tocará para todos. (Provavelmente ¬¬)
+				gain = 1.0, -- 1.0 = Volume total
+				--max_hear_distance = 1,
+				loop = false,
+			})
+		end
 	end,
 	drop = "television:widescreen",
 	on_construct = function(pos)
