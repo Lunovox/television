@@ -16,7 +16,7 @@ Developers:
 
 Languages:
  * en ← English (default, no need extra mod).
- * pt ← Potuguese per command [/set language pt]. Need mod 'intllib' to work.
+ * pt ← Portuguese per command [/set language pt]. Need mod 'intllib' to work.
 Contact the developer of this mod to add a translate to your language.
 
 Screenshots:
