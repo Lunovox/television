@@ -7,8 +7,8 @@
  * **[tradelands](https://github.com/Lunovox/tradelands)** (optional)
  * **[intllib](https://github.com/minetest-mods/intllib)** (optional)
 
-## Fork of mod: 
- * homedecor
+## Fork of modpack: 
+ * [homedecor](https://github.com/minetest-mods/homedecor_modpack)
 
 ## Licence: 
  * [GNU AGPL](https://github.com/Lunovox/television/blob/master/LICENSE)
