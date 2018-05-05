@@ -1,5 +1,7 @@
 television = { }
 
+television.translate = rawget(_G, "intllib") and intllib.Getter() or function(s) return s end
+
 television.canInteract = function(meta, player)
 	if player:get_player_name() == meta:get_string("owner") 
 		or minetest.get_player_privs(player:get_player_name()).server
@@ -78,12 +80,12 @@ television.putLabel = function(pos, message)
 end
 
 minetest.register_node("television:widescreen", {
-	description = "Televisao de Tela Larga",
+	description = television.translate("Television Widescreen "),
 	drawtype = "mesh",
 	mesh = "television_widescreen.obj",
 	tiles = {
 		"television_case.png",
-		{ name="television_screens.png^television_screens_text.png",
+		{ name=television.translate("television_screens_en.png"),
 			animation={
 				type="vertical_frames",
 				aspect_w = 150,
@@ -116,7 +118,7 @@ minetest.register_node("television:widescreen", {
 		local meta = minetest.env:get_meta(pos)
 		if television.canInteract(meta, puncher) then
 			minetest.set_node(pos, {name = "television:widescreen_off", param2 = node.param2})
-			television.putLabel(pos, "Televisao de Tela Larga (Desligada)")
+			television.putLabel(pos, television.translate("Television Widescreen (off)"))
 		end
 	end,
 	on_construct = function(pos)
@@ -150,11 +152,11 @@ minetest.register_node("television:widescreen_off", {
 	end,
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "television:widescreen", param2 = node.param2})
-		television.putLabel(pos, "Televisao de Tela Larga")
+		television.putLabel(pos, television.translate("Television Widescreen"))
 	end,
 	drop = "television:widescreen",
 	on_construct = function(pos)
-		television.putLabel(pos, "Televisao de Tela Larga (Desligada)")
+		television.putLabel(pos, television.translate("Television Widescreen (off)"))
 	end,
 
 })
@@ -168,9 +170,12 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_alias("television"	,"television:widescreen")
+minetest.register_alias(
+	television.translate("television"),
+	"television:widescreen"
+)
 minetest.register_alias("widescreen"	,"television:widescreen")
 minetest.register_alias("televisao"		,"television:widescreen")
 minetest.register_alias("tv"				,"television:widescreen")
 
-minetest.log('action',"["..minetest.get_current_modname():upper().."] Carregado!")
+minetest.log('action',"["..minetest.get_current_modname():upper().."] Loaded!")

@@ -1,12 +1,15 @@
 Decorative LCD TV that displays ad images and server tips. 
 
+Depends:
+ * default (mod of standard game)
+ * tradelands (optional) → https://github.com/Lunovox/tradelands
+
+Fork of mod: 
+ * homedecor
+
 License: 
- * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
+ * GNU AGPL: https://github.com/Lunovox/television/blob/master/LICENSE
 
 Developers: 
- * Lucas Vinicius (Undertaker) <lucasmacho22@gmail.com>
- * Lunovox Heavenfinder<lunovox@disroot.org>
-
-Derivado do mod: 
- * homedecor
+ * Lunovox Heavenfinder <https://libreplanet.org/wiki/User:Lunovox>
 
