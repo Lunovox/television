@@ -129,6 +129,11 @@ minetest.register_node("television:widescreen", {
 	on_construct = function(pos)
 		television.putLabel(pos, "Televisao de Tela Larga")
 	end,
+	on_destruct = function(pos)
+		if television.sound~=nil then
+			minetest.sound_stop(television.sound)
+		end
+	end,
 })
 
 minetest.register_node("television:widescreen_off", {
@@ -175,7 +180,11 @@ minetest.register_node("television:widescreen_off", {
 	on_construct = function(pos)
 		television.putLabel(pos, television.translate("Television Widescreen (off)"))
 	end,
-
+	on_destruct = function(pos)
+		if television.sound~=nil then
+			minetest.sound_stop(television.sound)
+		end
+	end,
 })
 
 minetest.register_craft({
