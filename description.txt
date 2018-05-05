@@ -3,6 +3,7 @@ Decorative LCD TV that displays ad images and server tips.
 Depends:
  * default (mod of standard game)
  * tradelands (optional) → https://github.com/Lunovox/tradelands
+ * intllib (optional) → https://github.com/minetest-mods/intllib
 
 Fork of mod: 
  * homedecor
@@ -13,3 +14,7 @@ License:
 Developers: 
  * Lunovox Heavenfinder <https://libreplanet.org/wiki/User:Lunovox>
 
+Languages:
+ * en ← English (default, no need extra mod).
+ * pt ← Potuguese per command [/set language pt]. Need mod 'intllib' to work.
+Contact the developer of this mod to add a translate to your language.
