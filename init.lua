@@ -81,7 +81,7 @@ television.putLabel = function(pos, message)
 end
 
 minetest.register_node("television:widescreen", {
-	description = television.translate("Television Widescreen "),
+	description = television.translate("Television Widescreen"),
 	drawtype = "mesh",
 	mesh = "television_widescreen.obj",
 	tiles = {
@@ -105,7 +105,7 @@ minetest.register_node("television:widescreen", {
 	selection_box = television.getBox(),
 	collision_box = television.getBox(),
 	--on_rotate = screwdriver.disallow,
-	groups = {snappy=3, dig_immediate=2},
+	groups = {snappy=3, dig_immediate=2, not_in_creative_inventory=1},
 	after_place_node = function(pos, placer, itemstack)
 		if not television.checkwall(pos) then
 			minetest.set_node(pos, {name = "air"})
@@ -125,13 +125,14 @@ minetest.register_node("television:widescreen", {
 			end
 		end
 	end,
+	drop = "television:widescreen_off",
 	on_construct = function(pos)
 		television.putLabel(pos, "Televisao de Tela Larga")
 	end,
 })
 
 minetest.register_node("television:widescreen_off", {
-	description = "Televisao de Tela Larga (Desligada)",
+	description = television.translate("Television Widescreen"),
 	drawtype = "mesh",
 	mesh = "television_widescreen.obj",
 	--tiles = {"television_case.png","television_screen_off.png",	},
@@ -141,13 +142,14 @@ minetest.register_node("television:widescreen_off", {
 	},
 	--inventory_image = "outdoor_tv_inv.png",
 	--wield_image = "outdoor_tv_inv.png",
+	inventory_image = "television_item.png",
 	paramtype = "light",
 	light_source = 1,
 	paramtype2 = "facedir",
 	selection_box = television.getBox(),
 	collision_box = television.getBox(),
 	--on_rotate = screwdriver.disallow,
-	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2, not_in_creative_inventory=1},
+	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2},
 	after_place_node = function(pos, placer, itemstack)
 		if not television.checkwall(pos) then
 			minetest.set_node(pos, {name = "air"})
@@ -170,7 +172,6 @@ minetest.register_node("television:widescreen_off", {
 			})
 		end
 	end,
-	drop = "television:widescreen",
 	on_construct = function(pos)
 		television.putLabel(pos, television.translate("Television Widescreen (off)"))
 	end,
@@ -178,7 +179,7 @@ minetest.register_node("television:widescreen_off", {
 })
 
 minetest.register_craft({
-	output = 'television:widescreen',
+	output = 'television:widescreen_off',
 	recipe = {
 		{"default:obsidian_glass"	,"default:obsidian_glass"	,"default:obsidian_glass"},
 		{"default:obsidian_glass"	,"default:obsidian_glass"	,"default:obsidian_glass"},
@@ -188,10 +189,10 @@ minetest.register_craft({
 
 minetest.register_alias(
 	television.translate("television"),
-	"television:widescreen"
+	"television:widescreen_off"
 )
-minetest.register_alias("widescreen"	,"television:widescreen")
-minetest.register_alias("televisao"		,"television:widescreen")
-minetest.register_alias("tv"				,"television:widescreen")
+minetest.register_alias("widescreen"	,"television:widescreen_off")
+minetest.register_alias("televisao"		,"television:widescreen_off")
+minetest.register_alias("tv"				,"television:widescreen_off")
 
 minetest.log('action',"["..minetest.get_current_modname():upper().."] Loaded!")
