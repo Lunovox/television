@@ -7,7 +7,6 @@ television.canInteract = function(meta, player)
 	if player:get_player_name() == meta:get_string("owner") 
 		or minetest.get_player_privs(player:get_player_name()).server
 		or minetest.get_player_privs(player:get_player_name()).mayor
-		or minetest.get_player_privs(player:get_player_name()).checkchest
 		or (minetest.get_modpath("tradelands") and modTradeLands.canInteract(player:getpos(), player:get_player_name()))
 	then
 		return true
@@ -118,7 +117,9 @@ minetest.register_node("television:widescreen", {
 	on_punch = function(pos, node, puncher, pointed_thing)
 		local meta = minetest.env:get_meta(pos)
 		if television.canInteract(meta, puncher) then
+			local owner = meta:get_string("owner")
 			minetest.set_node(pos, {name = "television:widescreen_off", param2 = node.param2})
+			meta:set_string("owner",owner)
 			television.putLabel(pos, television.translate("Television Widescreen (off)"))
 			if television.sound~=nil then
 				minetest.sound_stop(television.sound)
@@ -160,22 +161,31 @@ minetest.register_node("television:widescreen_off", {
 		if not television.checkwall(pos) then
 			minetest.set_node(pos, {name = "air"})
 			return true	-- "API: If return true no item is taken from itemstack"
+		else
+			local meta = minetest.env:get_meta(pos)
+			meta:set_string("owner",placer:get_player_name())
 		end
 	end,
 	on_punch = function(pos, node, puncher, pointed_thing)
-		minetest.set_node(pos, {name = "television:widescreen", param2 = node.param2})
-		television.putLabel(pos, television.translate("Television Widescreen"))
-		if puncher ~=nil and puncher:is_player() then
-			if television.sound~=nil then
-				minetest.sound_stop(television.sound)
+		local meta = minetest.env:get_meta(pos)
+		if television.canInteract(meta, puncher) then
+			local owner = meta:get_string("owner")
+			minetest.set_node(pos, {name = "television:widescreen", param2 = node.param2})
+			meta:set_string("owner",owner)
+			television.putLabel(pos, television.translate("Television Widescreen"))
+			if puncher~=nil and puncher:is_player() then
+				if television.sound~=nil then
+					minetest.sound_stop(television.sound)
+				end
+				television.sound = minetest.sound_play(
+					television.translate("sfx_jornal_en"), {
+					--object = puncher, --Se retirar esta linha tocará para todos. (Provavelmente ¬¬)
+					pos = pos,
+					--gain = 1.0, -- 1.0 = Volume total
+					max_hear_distance = 5,
+					loop = false,
+				})
 			end
-			television.sound = minetest.sound_play(
-				television.translate("sfx_jornal_en"), {
-				object = puncher, --Se retirar esta linha tocará para todos. (Provavelmente ¬¬)
-				gain = 1.0, -- 1.0 = Volume total
-				--max_hear_distance = 1,
-				loop = false,
-			})
 		end
 	end,
 	on_construct = function(pos)
